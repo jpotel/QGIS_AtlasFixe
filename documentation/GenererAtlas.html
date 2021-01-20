@@ -1,0 +1,610 @@
+﻿<!DOCTYPE html>
+            <html>
+                <head>
+                    <title>GenererAtlas.md</title>
+	                <meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
+	                <meta http-equiv="content-type" content="text/html; charset=utf-8">
+                    <style type="text/css">
+                    /*
+Copyright (c) 2017 Chris Patuzzo
+https://twitter.com/chrispatuzzo
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+*/
+
+body {
+  font-family: Helvetica, arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: white;
+  padding: 30px;
+  color: #333;
+}
+
+body &gt; *:first-child {
+  margin-top: 0 !important;
+}
+
+body &gt; *:last-child {
+  margin-bottom: 0 !important;
+}
+
+a {
+  color: #4183C4;
+  text-decoration: none;
+}
+
+a.absent {
+  color: #cc0000;
+}
+
+a.anchor {
+  display: block;
+  padding-left: 30px;
+  margin-left: -30px;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 20px 0 10px;
+  padding: 0;
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+  cursor: text;
+  position: relative;
+}
+
+h2:first-child, h1:first-child, h1:first-child + h2, h3:first-child, h4:first-child, h5:first-child, h6:first-child {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+h1:hover a.anchor, h2:hover a.anchor, h3:hover a.anchor, h4:hover a.anchor, h5:hover a.anchor, h6:hover a.anchor {
+  text-decoration: none;
+}
+
+h1 tt, h1 code {
+  font-size: inherit;
+}
+
+h2 tt, h2 code {
+  font-size: inherit;
+}
+
+h3 tt, h3 code {
+  font-size: inherit;
+}
+
+h4 tt, h4 code {
+  font-size: inherit;
+}
+
+h5 tt, h5 code {
+  font-size: inherit;
+}
+
+h6 tt, h6 code {
+  font-size: inherit;
+}
+
+h1 {
+  font-size: 28px;
+  color: black;
+}
+
+h2 {
+  font-size: 24px;
+  border-bottom: 1px solid #cccccc;
+  color: black;
+}
+
+h3 {
+  font-size: 18px;
+}
+
+h4 {
+  font-size: 16px;
+}
+
+h5 {
+  font-size: 14px;
+}
+
+h6 {
+  color: #777777;
+  font-size: 14px;
+}
+
+p, blockquote, ul, ol, dl, li, table, pre {
+  margin: 15px 0;
+}
+
+/*
+hr {
+  border: 0 none;
+  color: #cccccc;
+  height: 4px;
+  padding: 0;
+}
+*/
+body &gt; h2:first-child {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+body &gt; h1:first-child {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+body &gt; h1:first-child + h2 {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+body &gt; h3:first-child, body &gt; h4:first-child, body &gt; h5:first-child, body &gt; h6:first-child {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4, a:first-child h5, a:first-child h6 {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+h1 p, h2 p, h3 p, h4 p, h5 p, h6 p {
+  margin-top: 0;
+}
+
+li p.first {
+  display: inline-block;
+}
+
+ul, ol {
+  padding-left: 30px;
+}
+
+ul :first-child, ol :first-child {
+  margin-top: 0;
+}
+
+ul :last-child, ol :last-child {
+  margin-bottom: 0;
+}
+
+dl {
+  padding: 0;
+}
+
+dl dt {
+  font-size: 14px;
+  font-weight: bold;
+  font-style: italic;
+  padding: 0;
+  margin: 15px 0 5px;
+}
+
+dl dt:first-child {
+  padding: 0;
+}
+
+dl dt &gt; :first-child {
+  margin-top: 0;
+}
+
+dl dt &gt; :last-child {
+  margin-bottom: 0;
+}
+
+dl dd {
+  margin: 0 0 15px;
+  padding: 0 15px;
+}
+
+dl dd &gt; :first-child {
+  margin-top: 0;
+}
+
+dl dd &gt; :last-child {
+  margin-bottom: 0;
+}
+
+blockquote {
+  border-left: 4px solid #dddddd;
+  padding: 0 15px;
+  color: #777777;
+}
+
+blockquote &gt; :first-child {
+  margin-top: 0;
+}
+
+blockquote &gt; :last-child {
+  margin-bottom: 0;
+}
+
+table {
+  padding: 0;
+}
+table tr {
+  border-top: 1px solid #cccccc;
+  background-color: white;
+  margin: 0;
+  padding: 0;
+}
+
+table tr:nth-child(2n) {
+  background-color: #f8f8f8;
+}
+
+table tr th {
+  font-weight: bold;
+  border: 1px solid #cccccc;
+  text-align: left;
+  margin: 0;
+  padding: 6px 13px;
+}
+
+table tr td {
+  border: 1px solid #cccccc;
+  text-align: left;
+  margin: 0;
+  padding: 6px 13px;
+}
+
+table tr th :first-child, table tr td :first-child {
+  margin-top: 0;
+}
+
+table tr th :last-child, table tr td :last-child {
+  margin-bottom: 0;
+}
+
+img {
+  max-width: 100%;
+}
+
+span.frame {
+  display: block;
+  overflow: hidden;
+}
+
+span.frame &gt; span {
+  border: 1px solid #dddddd;
+  display: block;
+  float: left;
+  overflow: hidden;
+  margin: 13px 0 0;
+  padding: 7px;
+  width: auto;
+}
+
+span.frame span img {
+  display: block;
+  float: left;
+}
+
+span.frame span span {
+  clear: both;
+  color: #333333;
+  display: block;
+  padding: 5px 0 0;
+}
+
+span.align-center {
+  display: block;
+  overflow: hidden;
+  clear: both;
+}
+
+span.align-center &gt; span {
+  display: block;
+  overflow: hidden;
+  margin: 13px auto 0;
+  text-align: center;
+}
+
+span.align-center span img {
+  margin: 0 auto;
+  text-align: center;
+}
+
+span.align-right {
+  display: block;
+  overflow: hidden;
+  clear: both;
+}
+
+span.align-right &gt; span {
+  display: block;
+  overflow: hidden;
+  margin: 13px 0 0;
+  text-align: right;
+}
+
+span.align-right span img {
+  margin: 0;
+  text-align: right;
+}
+
+span.float-left {
+  display: block;
+  margin-right: 13px;
+  overflow: hidden;
+  float: left;
+}
+
+span.float-left span {
+  margin: 13px 0 0;
+}
+
+span.float-right {
+  display: block;
+  margin-left: 13px;
+  overflow: hidden;
+  float: right;
+}
+
+span.float-right &gt; span {
+  display: block;
+  overflow: hidden;
+  margin: 13px auto 0;
+  text-align: right;
+}
+
+code, tt {
+  margin: 0 2px;
+  padding: 0 5px;
+  white-space: nowrap;
+  border: 1px solid #eaeaea;
+  background-color: #f8f8f8;
+  border-radius: 3px;
+}
+
+pre code {
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  border: none;
+  background: transparent;
+}
+
+.highlight pre {
+  background-color: #f8f8f8;
+  border: 1px solid #cccccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px;
+}
+
+pre {
+  background-color: #f8f8f8;
+  border: 1px solid #cccccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px;
+}
+
+pre code, pre tt {
+  background-color: transparent;
+  border: none;
+}
+                    </style>
+                </head>
+                <body style="">
+                <h1 id="0">Création d'un atlas à échelle constante et à format fixe</h1>
+<p id="2">Ces quelques lignes ont comme objectif de fournir un pas à pas pour produire un atlas de carte ayant une échelle et une composition constantes. Il pourrait servir pour générer par exemple un atlas communal au format A4 avec des cartes au 1/25000e.</p>
+<p id="4">La contrainte principale lors de la génération d'un atlas est qu'un périmètre peut être plus grand que la fenêtre cartographique lorsque nous sommes contraint de respecter une échelle et un cadre. Il est alors nécessaire de produire pour celui-ci plusieurs planches puis de les assembler. Avec un nombre réduit de périmètres il est possible de gérer le découpage au cas par cas mais cela devient vite un casse tête pour un atlas communale avec plus de 2 500 collectivités comme c'est le cas en région Normandie.</p>
+<p id="6">Nous allons donc voir comment produire une couche de données géographiques permettant de générer l'emprise des planches et comment assembler ces planches en fonction du contexte de mise en page prédéfini.</p>
+<h2 id="8">Préalable</h2>
+<p id="10">L'utilisateur doit avoir accès en écriture à une base de données PostgreSQL possédant l'extension Postgis et disposer sur son poste du logiciel <a href="http://www.qgis.org">QGIS</a>.</p>
+<p id="12">L'ensemble des développements ont été réalisés avec les versions logiciel suivantes :</p>
+<ul id="14">
+<li id="14">PostgreSQL : 9.4</li>
+<li id="15">Postgis : 2.2</li>
+<li id="16">QGIS : 3.10</li>
+</ul>
+<p id="18">La fusion des fichiers pdf nécessite l'installation de la bibliothèque python <a href="https://pypi.org/project/PyPDF2/">PyPDF2</a></p>
+<h2 id="21">Etape 1 : fixer la mise en page des planches</h2>
+<p id="23">La première étape de la génération de l'atlas est de définir la mise en page d'une planche afin de connaitre la dimension exacte de la fenêtre cartographique (hauteur et largeur)</p>
+<p id="25"><img src="file:///d:/users/jerome.potel/Documents/CharteCarto/exemple_atlas/documentation/img/image1.jpg" alt="hauteur largeur planche" /></p>
+<p id="27">Il est également nécessaire de fixer le recouvrement minimal entre les planches.</p>
+<p id="29"><img src="file:///d:/users/jerome.potel/Documents/CharteCarto/exemple_atlas/documentation/img/image2.jpg" alt="recouvrement planche" /></p>
+<p id="31"><strong>Hauteur, largeur, échelle et recouvrement</strong> sont les 4 seules données nécessaires à la génération de la grille de l'atlas.</p>
+<h2 id="33">Etape 2 : générer la grille des planches</h2>
+<p id="35">La génération de la grille d'atlas s'effectue en lançant un script SQL dans postgresql. Il nécessite au préalable :</p>
+<ol id="37">
+<li id="37">de fixer la mise en page (hauteur, largeur, recouvrement)</li>
+<li id="38">d'importer la couche geographique servant de base à la génération de la grille dans une base postgresql (ex : la couche des communes)</li>
+</ol>
+<p id="40">Le code sql avant d'être lancé doit être modifié pour prendre en compte les caractéristiques de votre projet. Tous ces changements s'effectuent dans les premières lignes du code.</p>
+<pre><code id="42" class="language-sql">drop materialized view if exists mon_schema.ma_grille;
+create materialized view mon_schema.ma_grille as
+with 
+
+    largeur_carte as (select 227 as l),--largeur de la fenêtre carte en mm
+    hauteur_carte as (select 173.125 as h),--hauteur de la fenêtre carte en mm
+    recouvrement_carte as (select 10 as r),--recouvrement minimal entre planche en mm
+    echelle_carte as (select 25000 as e),--echelle de sortie des cartes
+    
+    
+    /*on filtre les objets qu'on souhaite intégrer à l'atlas et on rajoute des informations*/
+    perimetre_atlas as (
+        select 
+            insee_com as id_perimetre,
+            st_xmax(geom) as xmax,
+            st_xmin(geom) as xmin,
+            st_ymax(geom) as ymax,
+            st_ymin(geom) as ymin,
+            geom 
+        from &quot;adminExpress&quot;.commune 
+        where insee_reg='28'
+    )
+...
+</code></pre>
+<p id="68">Ces modifications  concernent :</p>
+<ul id="70">
+<li id="70">le <strong>nom</strong> de la vue matérialisée qui sera créée par le traitement : <code>mon_schema.ma_grille</code></li>
+<li id="71">la <strong>largeur</strong> en mm de la fenêtre cartographique dans <code>largeur_carte as (select 227 as l)</code></li>
+<li id="72">la <strong>hauteur</strong> en mm de la fenêtre cartographique dans <code>hauteur_carte as (select 173.125 as h)</code></li>
+<li id="73">la valeur en mm du <strong>recouvrement</strong> minimal entre chaque planche dans <code>recouvrement_carte as (select 10 as r)</code></li>
+<li id="74">la valeur de l'<strong>échelle</strong> de sortie dans <code>echelle_carte as (select 25000 as e)</code></li>
+<li id="75">la selection permettant de choisir <strong>les objets à &quot;découper&quot;</strong> en mettant en attribut <code>id_perimetre</code> l'indentifiant unique de la couche, en mettant le nom de la table ad hoc dans la clause <code>from</code> et le filtre adéquate dans la clause <code>where</code></li>
+</ul>
+<p id="77">Une fois ces modifications effectuées, il suffit dans lancer le script sql. Une vue matérialisée est alors créée et réutilisable dans QGIS pour être utiliser dans la génération de l'atlas.</p>
+<p id="79">La couche géographique générée possède 3 attributs :</p>
+<ul id="81">
+<li id="81">gid : entier unique incrémenté à partir de 1/25000e</li>
+<li id="82">id_perimetre : correspondant à l'identifiant unique de la couche source (pour un atlas communal se sera par exemple le numéro insee de la commune)</li>
+<li id="83">num : numéro de planche de l'objet</li>
+</ul>
+<h2 id="85">Etape 3 : produire l'atlas dans QGIS</h2>
+<h3 id="87">paramètre de base</h3>
+<p id="89">En tout premier lieu, il convient d'intégrer dans le projet QGIS la couche géographique générée à l'étape précédente qu'on appellera par la suite <code>grille</code> et la couche source des périmètres qui ont servi à la génération de la grille que nous appellerons <code>perimetre</code>.</p>
+<p id="91">Ensuite, il est nécessaire de définir <em>les paramètres de génération de l'atlas</em> dans la mise en page qui a servi à définir les données en entrée pour la génération de la grille (hauteur, largeur, échelle et recouvrement).</p>
+<p id="93"><img src="file:///d:/users/jerome.potel/Documents/CharteCarto/exemple_atlas/documentation/img/image3.jpg" alt="paramètre d'atlas" /></p>
+<p id="95">Il s'agit :</p>
+<ul id="97">
+<li id="97">d'indiquer à QGIS la couche permettant de générer l'atlas (pour nous <code>grille</code>),</li>
+<li id="98">de définir un nom de page et de fichier d'export</li>
+<li id="99">d'indiquer que la sortie s'effectuera avec un fichier par périmètre d'atlas.</li>
+</ul>
+<p id="101">L'étape suivante, consiste à définir le comportement de la fenêtre cartographique en fonction de l'atlas. Cette opération s'effectue en sélectionnant l'objet carte de la mise en page et en se rendant dans les propriétés de l'objet.</p>
+<p id="103"><img src="file:///d:/users/jerome.potel/Documents/CharteCarto/exemple_atlas/documentation/img/image4.jpg" alt="paramètre d'atlas" /></p>
+<p id="105">Dans cet onglet il convient :</p>
+<ul id="107">
+<li id="107">de fixer l'échelle de sortie pour qu'elle corresponde à la donnée entrée lors de la génération de la grille (dans l'image ci-dessous 25000)</li>
+<li id="108">d'indiquer que l'objet carte est contrôler par Atlas</li>
+<li id="109">d'indiquer la méthode &quot;Echelle fixe&quot; pour la génération de l'atlas</li>
+</ul>
+<h3 id="111">Bonus pour la mise en page</h3>
+<h4 id="113">Un titre en fonction du périmètre</h4>
+<p id="115">L'attribut <code>&quot;id_perimetre&quot;</code> de la <code>grille</code> permet de faire le lien avec la couche <code>perimetre</code> pour récupérer par exemple le libelé du périmètre.</p>
+<p id="117">Pour un atlas communal produit à partir de la couche commune d'AdminExpress, la formule suivante permet de récupérer le nom de la commune concernée par la planche :</p>
+<pre><code id="119">attribute(
+    get_feature(
+        'perimetre',
+        'insee_com',
+        attribute(@atlas_feature,'id_perimetre')
+    ),'nom_com'
+)
+</code></pre>
+<h4 id="129">Indiquer le nombre de planches créer pour un périmètre</h4>
+<p id="131">Le but ici est de pouvoir indiquer le nombre de planches concernant un périmètre pour indiquer par exemple qu'il s'agit de la 1ere sur N planche comme par exemple  <em>&quot;Vire Normandie (1/15)&quot;</em>.</p>
+<p id="133">la formule ci-dessous permet de calculer pour le périmètre généré par l'atlas le nombre de planches conernant le périmètre :</p>
+<pre><code id="135"> aggregate(
+    layer:='grille', 
+    aggregate:='max',
+    expression:=&quot;num&quot;,
+    filter:=
+        &quot;id_perimetre&quot; = attribute(@atlas_feature,'id_perimetre')
+)
+</code></pre>
+<h4 id="145">Représenter les emprises des planches pour un périmètre</h4>
+<p id="147">Il est possible de représenter l'emprise des planches concernant un périmètre pour faire une carte de localisation de la planche concernée comme l'illustre l'image ci-dessous.</p>
+<p id="149"><img src="file:///d:/users/jerome.potel/Documents/CharteCarto/exemple_atlas/documentation/img/image5.jpg" alt="paramètre d'atlas" /></p>
+<p id="151">Ceci s'effectue en définissant une règle de représentation pour ne représenter que les objets de la <code>grille</code> concernés par le <code>perimetre</code> avec la formule <code>&quot;id_perimetre&quot; = attribute(@atlas_feature,'id_perimetre')</code> et en représentant les géométrie de la <code>grille</code> par un rectangle défini dans le générateur de géométrie avec la formule suivante.</p>
+<pre><code id="153">with_variable( 
+    'centre',
+    make_point(
+        (xmin($geometry)+xmax($geometry))/2,
+        (ymin($geometry)+ymax($geometry))/2
+    ),
+    make_polygon(
+        make_line(
+            translate(
+                @centre, 
+                -227/2*25, 
+                -173.125/2*25
+            ),
+            translate(
+                @centre, 
+                -227/2*25, 
+                173.125/2*25
+            ),
+            translate(
+                @centre, 
+                227/2*25, 
+                173.125/2*25
+            ),
+            translate(
+                @centre, 
+                227/2*25, 
+                -173.125/2*25
+            ),
+            translate(
+                @centre, 
+                -227/2*25, 
+                -173.125/2*25
+            )
+        )
+    )
+)
+</code></pre>
+<p id="192">Le rectangle englobant est dépendant de la hauteur et de la largeur de la mise en page ainsi que de l'échelle. L'exemple ci-dessous correspond à une fenêtre carte de largeur <code>227 mm</code>, de hauteur <code>173,125 mm</code> et d'échelle <code>1/25000e</code>.</p>
+<h2 id="194">Etape 4 : assembler les planches relatives à un même périmètre</h2>
+<p id="196">La génération des pdf depuis QGIS va générer plusieurs planches pour les périmètres n'entrant pas complètement dans une page d'atlas. N fichiers pdf nommés <code>Identifiant_n.pdf</code> avec n compris entre 1 et N seront produits. Le but de cette étape est de <strong>fusionner les planches pour ne créer qu'un seul pdf par périmètre</strong>.</p>
+<p id="198">Cette opération s'effectue au moyen d'un script <strong>python</strong> lancé dans qgis utilisant la bibliotèque PyPDF2.</p>
+<pre><code id="200" class="language-python">from PyPDF2 import PdfFileMerger, PdfFileReader
+import os, glob
+
+# à modifier en fonction du projet
+dossier = r'd:\users\jerome.potel\Documents\CharteCarto\exemple_atlas\input' 
+themeCarte = 'ZNS'
+nbIdentifiantPerim = 5
+
+# création d'un dossier de sortie nommé output
+os.makedirs(dossier+r'\output', exist_ok=True)
+
+# génération d'une liste contenant les noms des fichiers pdf
+listPerim = []
+listFichier = glob.glob(dossier+r&quot;\*.pdf&quot;)
+for item in listFichier :
+    listPerim.append(os.path.basename(item)[0:nbIdentifiantPerim])
+listPerim = list(set(listPerim))
+
+# écriture des fichiers pdf fusionné
+os.chdir(input)
+for item in listPerim :
+    merger = PdfFileMerger()
+    files = [x for x in os.listdir(input) if x.startswith(item) and x.endswith('.pdf')]
+    for fname in sorted(files):
+        with open(os.path.join(input, fname), 'rb') as f:
+            merger.append(PdfFileReader(f))
+    print(item)
+    merger.write(dossier+r'\output\\'+item+themeCarte+'.pdf')
+</code></pre>
+<p id="231">En fonction du projet, 3 paramètres doivent être modifiés dans le script :</p>
+<ol id="233">
+<li id="233"><code>dossier</code> : chemin du dossier où se trouve les pdf générés par la génération de l'atlas dans QGIS</li>
+<li id="234"><code>themeCarte</code> : chaine de caractère ajouté après l'identifiant du périmètre lors de la génération du pdf par le script python</li>
+<li id="235"><code>nbIdentifiantPerim</code> : longueur de l'identifiant du périmètre (ex : pour un epci 9, pour une commune 5...)</li>
+</ol>
+<p id="237">Le script créera un dossier output dans le dossier ou se situe les pdf sources.</p>
+
+                </body>
+            <html>
+            
