@@ -259,16 +259,24 @@ with
     )
     
 /*requete final permetant une numérotation unique de chaque ligne*/
-select 
+select
   row_number() over() gid,
   id_perimetre,
   row_number() over (
     partition by id_perimetre
     order by id_perimetre,gid_bande_h, gid_bande_v) as num,
-  st_multi(case
-        when st_geometrytype(geom) ilike '%collect%' then st_multi(st_collectionextract(geom, 3))
-        else geom
-    end)::geometry(MultiPolygon,2154) AS geom
-  from regroupe_morceau order by id_perimetre,gid_bande_h, gid_bande_v
+  geom
+from (
+  select 
+    id_perimetre,
+    gid_bande_h, 
+    gid_bande_v,
+    st_multi(case
+          when st_geometrytype(geom) ilike '%collect%' then st_multi(st_collectionextract(geom, 3))
+          else geom
+      end)::geometry(MultiPolygon,2154) AS geom
+  from regroupe_morceau) as a 
+where not st_isempty(geom)
+order by id_perimetre,gid_bande_h, gid_bande_v
 
   
